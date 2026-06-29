@@ -67,16 +67,12 @@ The user executing Terraform must have permissions to:
 - Create EC2 Instances
 - Create Security Groups
 - Create EC2 Key Pairs
-- Create IAM Roles
-- Create IAM Instance Profiles
-- Attach IAM Policies
 
 ### Existing AWS Resources
 
 The following must already exist:
 
 - AWS Account
-- AWS CodeCommit Repository
 - SSH Public Key
 
 ---
@@ -88,7 +84,7 @@ The following must already exist:
 ├── main.tf
 ├── variables.tf
 ├── outputs.tf
-├── startup.sh.tpl
+├── user_data.sh
 ├── terraform.tfvars
 └── README.md
 ```

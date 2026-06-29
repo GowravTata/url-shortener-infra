@@ -39,11 +39,11 @@ resource "aws_iam_role_policy_attachment" "ec2_codecommit_policy" {
 }
 
 # Instance Profile
-resource "aws_iam_instance_profile" "ec2_code_commit_profile" {
-  name = "${var.instance_name}-codecommit-profile"
-  role = aws_iam_role.ec2_code_commit_role.name
+# resource "aws_iam_instance_profile" "ec2_code_commit_profile" {
+#   name = "${var.instance_name}-codecommit-profile"
+#   role = aws_iam_role.ec2_code_commit_role.name
 
-}
+# }
 
 # Security Groups for EC2
 resource "aws_security_group" "app_sg" {
@@ -101,7 +101,8 @@ resource "aws_instance" "app_server" {
   vpc_security_group_ids = [
     aws_security_group.app_sg.id
   ]
-  iam_instance_profile = aws_iam_instance_profile.ec2_code_commit_profile.name
+  # Uncomment the below line, as it is only neded if th Code is in codecommit
+  # iam_instance_profile = aws_iam_instance_profile.ec2_code_commit_profile.name
 
   user_data = templatefile("${path.module}/user_data.sh", {
     repo_name       = var.repo_name
